@@ -1,0 +1,32 @@
+<! DOCTYPE html>
+<html>
+  <head>
+    <title>Ohio One-room School Houses</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <style type="text/css">
+      html { height: 100% }
+      body { height: 100%; margin: 0; padding: 0 }
+      #map_canvas { height: 100% }
+    </style>
+    <script type="text/javascript"
+        src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCIe6cSxwDvY6gWuJ0qI9I0C0O1Tsu_wpc&sensor=false">
+    </script>
+    <script type="text/javascript">
+      function initialize() {
+        var latlng = new google.maps.LatLng(40.105912, -84.558334);
+        var myOptions = {
+          zoom: 11,
+          center: latlng,
+          mapTypeId: google.maps.MapTypeId.TERRAIN // ROADMAP
+        };
+        var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+      }
+    </script>
+  </head>
+
+  <body>
+    <div id="map_canvas" style="width:100%; height:100%"></div>
+    <script type="text/javascript" src="/js/locations.js"></script>
+  </body>
+</html>
+
