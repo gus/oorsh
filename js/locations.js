@@ -43,12 +43,19 @@ function setupTownshipFilter(map) {
 
 function initializeMap() {
   var latlng = new google.maps.LatLng(40.105912, -84.558334);
-  var myOptions = {
+  var mapOptions = {
     zoom: 11,
     center: latlng,
+    streetViewControl: false,
+    //mapTypeControlOptions: {
+      //position: google.maps.ControlPosition.TOP_LEFT
+    //},
+    //panControlOptions: {
+      //position: google.maps.ControlPosition.LEFT_TOP
+    //},
     mapTypeId: google.maps.MapTypeId.ROADMAP //TERRAIN, ROADMAP
   };
-  var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+  var map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
   setupLocations(map);
   setupTownshipFilter(map);
 }
