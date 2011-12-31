@@ -1,13 +1,43 @@
+function listenTo(el, evname, fn) {
+  var listener = el.addEventListener || el.attachEvent;
+  listener.call(el, (el.addEventListener ? evname : "on" + evname), fn, false);
+}
+
 function buildSchoolHouseMarker(schoolHouse) {
   return new google.maps.Marker({
       "position": new google.maps.LatLng(schoolHouse.latitude, schoolHouse.longitude),
+      "animation": google.maps.Animation.DROP,
       "title": (schoolHouse.township + ": " + schoolHouse.name)
   });
+  //google.maps.event.addListener(marker, 'click', toggleBounce);
 }
 
 function setupLocations(map) {
   for (var i=0,n=schoolHouses.length; i<n; i++) {
-    buildSchoolHouseMarker(schoolHouses[i]).setMap(map);
+    var schoolHouse = schoolHouses[i],
+        marker = buildSchoolHouseMarker(schoolHouse);
+    marker.setMap(map);
+    schoolHouse.marker = marker;
+  }
+}
+
+function filterSchoolHousesByTownship(name) {
+  for (var i=0, n=schoolHouses.length; i<n; i++) {
+    var schoolHouse = schoolHouses[i];
+    schoolHouse.marker.setVisible(schoolHouse.township == name);
+  }
+}
+
+function setupTownshipFilter(map) {
+  var townshipList = document.getElementById("townships");
+  for (var i=0, n=townships.length; i<n; i++) {
+    var li = document.createElement("li");
+    li.innerHTML = townships[i];
+    li.setAttribute("data-name", townships[i]);
+    listenTo(li, 'click', function () {
+      filterSchoolHousesByTownship(this.getAttribute("data-name"));
+    });
+    townshipList.appendChild(li);
   }
 }
 
@@ -20,6 +50,7 @@ function initializeMap() {
   };
   var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
   setupLocations(map);
+  setupTownshipFilter(map);
 }
 
 function loadMapsApi() {
@@ -31,12 +62,13 @@ function loadMapsApi() {
   dockScript.parentNode.insertBefore(script, dockScript);
 }
 
-// Main
-
-loadMapsApi();
-
 // Model
 
+var townships = [
+  "Adams", "Allen", "Brown", "Butler", "Franklin", "Greenville", "Harrison",
+  "Jackson", "Liberty", "Mississinawa", "Monroe", "Neave", "Patterson", "Richmond",
+  "Twin", "Van Buren", "Wabash", "Washington", "Wayne", "York"
+];
 var schoolHouses = [];
 
 // Adams township
@@ -92,4 +124,8 @@ schoolHouses.push({
 schoolHouses.push({
   township: "Adams", name: "#14", latitude: 40.094617, longitude: -84.4298
 });
+
+// Main
+
+loadMapsApi();
 
