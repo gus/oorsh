@@ -16,9 +16,9 @@ h6 {
   display: block;
   height: 80px; width: 100%;
   background-color: #fff;
-  box-shadow: 0 0 3px 0 rgba(0,0,0,0.2);
+  border-bottom: 1px solid #ccc;
 }
-html.ie8 #banner, html.lte-ie8 #banner { border-bottom: 1px solid #ccc; }
+html.boxshadow #banner { border-bottom: 0; box-shadow: 0 0 3px 0 rgba(0,0,0,0.2); }
 #content {
   position: fixed; top: 80px; left: 0;
   height: 100%; width: 100%;
