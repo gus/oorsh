@@ -29,15 +29,14 @@ function filterSchoolHousesByTownship(name) {
 }
 
 function setupTownshipFilter(map) {
-  var townshipList = document.getElementById("townships");
+  var $townshipList = $("#townships");
   for (var i=0, n=townships.length; i<n; i++) {
-    var li = document.createElement("li");
-    li.innerHTML = townships[i];
-    li.setAttribute("data-name", townships[i]);
-    listenTo(li, 'click', function () {
-      filterSchoolHousesByTownship(this.getAttribute("data-name"));
+    var $li = $(document.createElement("li"));
+    $li.text(townships[i]).data("name", townships[i]);
+    $li.click(function () {
+      filterSchoolHousesByTownship($(this).data("name"));
     });
-    townshipList.appendChild(li);
+    $townshipList.append($li);
   }
 }
 
@@ -47,12 +46,6 @@ function initializeMap() {
     zoom: 11,
     center: latlng,
     streetViewControl: false,
-    //mapTypeControlOptions: {
-      //position: google.maps.ControlPosition.TOP_LEFT
-    //},
-    //panControlOptions: {
-      //position: google.maps.ControlPosition.LEFT_TOP
-    //},
     mapTypeId: google.maps.MapTypeId.ROADMAP //TERRAIN, ROADMAP
   };
   var map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
@@ -134,5 +127,5 @@ schoolHouses.push({
 
 // Main
 
-loadMapsApi();
+$(loadMapsApi);
 

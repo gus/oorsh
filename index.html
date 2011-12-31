@@ -1,72 +1,25 @@
 <! DOCTYPE html>
-<html>
+<!--[if lt IE 7 ]><html class="no-js ie lte-ie8 ie6" lang="en"><![endif]-->
+<!--[if IE 7 ]><html class="no-js ie lte-ie8 ie7" lang="en"><![endif]-->
+<!--[if IE 8 ]><html class="no-js ie lte-ie8 ie8" lang="en"><![endif]-->
+<!--[if IE 9 ]><html class="no-js ie ie9" lang="en"> <![endif]-->
+<!--[if (gte IE 10)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
   <head>
     <title>Ohio One Room School Houses</title>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
-    <style type="text/css">
-      html { height: 100% }
-      
-      body {
-        height: 100%; margin: 0; padding: 0;
-        font-family: Arial,Helvetica,sans-serif;
-      }
-
-      h1,h2,h3,h4,h5,h6 { margin: 0; padding: 0; }
-      h6 {
-        text-transform: uppercase;
-      }
-
-      #banner {
-        position: fixed; top: 0; left: 0; z-index: 999;
-        height: 80px; width: 100%;
-        background-color: #fff;
-        box-shadow: 0 0 3px 0 rgba(0,0,0,0.2);
-      }
-      #content {
-        position: fixed; top: 80px; left: 0;
-        height: 100%; width: 100%;
-      }
-      #footer {
-        position: fixed; bottom: 0; left: 0; z-index: 999;
-        width: 100%; padding: 1ex; background-color: #eee;
-        border-top: 1px solid #ccc;
-        font-size: 75%;
-      }
-
-      section .inner {
-        width: 960px; margin: 0 auto;
-      }
-      section .inner div {
-        border-right: 1px solid #ddd; float: left;
-        padding: 10px 10px 0 10px; height: 70px; display: inline-block;
-      }
-      section .inner div:first-child { padding-left: 0; }
-      section .inner div:last-child { border: 0; padding-right: 0; }
-
-      #logo { width: 156px; }
-      #nav { width: 764px; }
-
-      #logo h6 { color: #888; font-size: 7pt; }
-
-      #nav ul {
-        list-style: none; margin: 0; padding: 0;
-      }
-      #nav li {
-        font-size: 70%; padding: 0; margin: 3px 3px 0px 0;
-        color: #8bf; cursor: pointer;
-        display: inline-block; float: left; width: 80px;
-      }
-    </style>
+    <link href="/css/application.css" media="screen" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.0.6/modernizr.min.js"></script>
   </head>
 
   <body>
     <section id="banner">
       <div class="inner">
-        <div id="logo">
+        <div id="logo" class="first-child">
           <h1>OORSH</h1>
           <h6>Ohio One Room School Houses</h6>
         </div>
-        <div id="nav">
+        <div id="nav" class="last-child">
           <h6>Townships</h6>
           <ul id="townships"></ul>
         </div>
