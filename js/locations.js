@@ -1,67 +1,3 @@
-function listenTo(el, evname, fn) {
-  var listener = el.addEventListener || el.attachEvent;
-  listener.call(el, (el.addEventListener ? evname : "on" + evname), fn, false);
-}
-
-function buildSchoolHouseMarker(schoolHouse) {
-  return new google.maps.Marker({
-      "position": new google.maps.LatLng(schoolHouse.latitude, schoolHouse.longitude),
-      "animation": google.maps.Animation.DROP,
-      "title": (schoolHouse.township + ": " + schoolHouse.name)
-  });
-  //google.maps.event.addListener(marker, 'click', toggleBounce);
-}
-
-function setupLocations(map) {
-  for (var i=0,n=schoolHouses.length; i<n; i++) {
-    var schoolHouse = schoolHouses[i],
-        marker = buildSchoolHouseMarker(schoolHouse);
-    marker.setMap(map);
-    schoolHouse.marker = marker;
-  }
-}
-
-function filterSchoolHousesByTownship(name) {
-  for (var i=0, n=schoolHouses.length; i<n; i++) {
-    var schoolHouse = schoolHouses[i];
-    schoolHouse.marker.setVisible(schoolHouse.township == name);
-  }
-}
-
-function setupTownshipFilter(map) {
-  var $townshipList = $("#townships");
-  for (var i=0, n=townships.length; i<n; i++) {
-    var $li = $(document.createElement("li"));
-    $li.text(townships[i]).data("name", townships[i]);
-    $li.click(function () {
-      filterSchoolHousesByTownship($(this).data("name"));
-    });
-    $townshipList.append($li);
-  }
-}
-
-function initializeMap() {
-  var latlng = new google.maps.LatLng(40.105912, -84.558334);
-  var mapOptions = {
-    zoom: 11,
-    center: latlng,
-    streetViewControl: false,
-    mapTypeId: google.maps.MapTypeId.ROADMAP //TERRAIN, ROADMAP
-  };
-  var map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
-  setupLocations(map);
-  setupTownshipFilter(map);
-}
-
-function loadMapsApi() {
-  var apiKey = "AIzaSyCIe6cSxwDvY6gWuJ0qI9I0C0O1Tsu_wpc",
-      dockScript = document.body.getElementsByTagName("script")[0],
-      script = document.createElement("script");
-  script.src = "http://maps.googleapis.com/maps/api/js?key=" + apiKey + "&sensor=false&callback=initializeMap";
-  script.type = "text/javascript";
-  dockScript.parentNode.insertBefore(script, dockScript);
-}
-
 // Model
 
 var townships = [
@@ -125,7 +61,93 @@ schoolHouses.push({
   township: "Adams", name: "#14", latitude: 40.094617, longitude: -84.4298
 });
 
-// Main
+// Greenville township
 
-$(loadMapsApi);
+schoolHouses.push({
+  township: "Greenville", name: "#1 Pikeville", latitude: 40.164223, longitude: -84.610289
+});
+
+schoolHouses.push({
+  township: "Greenville", name: "#2 Lindamond", latitude: 40.135933, longitude: -84.655876
+});
+
+schoolHouses.push({
+  township: "Greenville", name: "#3 Bethel", latitude: 40.165107, longitude: -84.703619
+});
+
+//schoolHouses.push({
+  //township: "Greenville", name: "#4 Bryson", latitude: 
+//});
+
+//schoolHouses.push({
+  //township: "Greenville", name: "#5 Children's Home", latitude: 
+//});
+
+//schoolHouses.push({
+  //township: "Greenville", name: "#6 Wakefield", latitude: 
+//});
+
+//schoolHouses.push({
+  //township: "Greenville", name: "#7 Knick", latitude: 
+//});
+
+//schoolHouses.push({
+  //township: "Greenville", name: "#8 Rockport", latitude: 
+//});
+
+//schoolHouses.push({
+  //township: "Greenville", name: "#9 Ludy", latitude: 
+//});
+
+//schoolHouses.push({
+  //township: "Greenville", name: "#10 Coletown", latitude: 
+//});
+
+//schoolHouses.push({
+  //township: "Greenville", name: "#11 Shady Glen", latitude: 
+//});
+
+//schoolHouses.push({
+  //township: "Greenville", name: "#12 Halderman", latitude: 
+//});
+
+//schoolHouses.push({
+  //township: "Greenville", name: "#13 Oak Grove", latitude: 
+//});
+
+//schoolHouses.push({
+  //township: "Greenville", name: "#14 BeeHive", latitude: 
+//});
+
+//schoolHouses.push({
+  //township: "Greenville", name: "#15 Hall", latitude: 
+//});
+
+//schoolHouses.push({
+  //township: "Greenville", name: "#16 Concord", latitude: 
+//});
+
+//schoolHouses.push({
+  //township: "Greenville", name: "#17 Sugar Valley", latitude: 
+//});
+
+//schoolHouses.push({
+  //township: "Greenville", name: "#18 Cedar Point", latitude: 
+//});
+
+//schoolHouses.push({
+  //township: "Greenville", name: "#19 Joint District", latitude: 
+//});
+
+//schoolHouses.push({
+  //township: "Greenville", name: "#20 Apple Grove College", latitude: 
+//});
+
+//schoolHouses.push({
+  //township: "Greenville", name: "#21 Midnight", latitude: 
+//});
+
+//schoolHouses.push({
+  //township: "Greenville", name: "#22 Avery", latitude: 
+//});
 
