@@ -19,7 +19,9 @@ function bindSchoolHouseClick(schoolHouse, map) {
   google.maps.event.addListener(schoolHouse.marker, 'click', function (ev) {
     var $details = $("#details").show();
     $details.find("h2").text(schoolHouse.township + ": " + schoolHouse.name);
-    $("#map_canvas").width($(window).width() - $details.width());
+    var maxWidth = $(window).width() - $details.width();
+    if ($("html.boxshadow").length == 0) { maxWidth = maxWidth - 1; }
+    $("#map_canvas").width(maxWidth);
     google.maps.event.trigger(map, 'resize');
     map.setCenter(ev.latLng);
     schoolHouse.marker.setIcon(oorsh.maps.images.BlueMarker);
