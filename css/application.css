@@ -12,20 +12,19 @@ h6 {
 }
 
 #banner {
-  position: fixed; top: 0; left: 0; z-index: 999;
+  position: fixed; top: 0; left: 0; z-index: 2;
   display: block;
   height: 80px; width: 100%;
   background-color: #fff;
   border-bottom: 1px solid #ccc;
 }
-html.boxshadow #banner { border-bottom: 0; box-shadow: 0 0 3px 0 rgba(0,0,0,0.2); }
 #content {
   position: fixed; top: 80px; left: 0;
   height: 100%; width: 100%;
   display: block;
 }
 #footer {
-  position: fixed; bottom: 0; left: 0; z-index: 999;
+  position: fixed; bottom: 0; left: 0; z-index: 4;
   width: 100%; padding: 5px; background-color: #eee;
   border-top: 1px solid #ccc;
   display: block;
@@ -35,12 +34,12 @@ html.boxshadow #banner { border-bottom: 0; box-shadow: 0 0 3px 0 rgba(0,0,0,0.2)
   width: 960px; margin: 0 auto; position: relative;
   display: block;
 }
-.inner div {
+#banner .inner div {
   border-right: 1px solid #ddd; float: left;
   padding: 10px 10px 0 10px; height: 70px; display: inline-block;
 }
-.inner div.first-child { padding-left: 0; }
-.inner div.last-child { border: 0; padding-right: 0; }
+#banner .inner div.first-child { padding-left: 0; }
+#banner .inner div.last-child { border: 0; padding-right: 0; }
 
 #logo { width: 156px; }
 #nav { width: 764px; }
@@ -55,4 +54,32 @@ html.boxshadow #banner { border-bottom: 0; box-shadow: 0 0 3px 0 rgba(0,0,0,0.2)
   color: #8bf; cursor: pointer;
   display: inline-block; float: left; width: 80px;
 }
+
+#details {
+  width: 400px; height: 100%;
+  float: left; position: relative;
+  border-right: 2px solid #ccc;
+  z-index: 3;
+}
+html.boxshadow #details {
+  border: 0;
+  box-shadow: 2px 2px 3px 0 rgba(0,0,0,0.2);
+}
+#details .inner {
+  width: 350px; margin: 20px auto;
+}
+#details p { margin: 0; padding: 10px 0; }
+#details ul {
+  list-style: none; margin: auto; padding: 0; width: 312px;
+}
+#details li {
+  padding: 0; margin: 2px;
+  display: inline-block; float: left;
+}
+
+#details img {
+  border: 0; padding: 0; margin: 0;
+}
+
+#map_canvas {}
 

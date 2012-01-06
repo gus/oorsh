@@ -1,10 +1,33 @@
+oorsh = {
+  maps: {
+    images: {},
+    selectedSchoolHouse: undefined
+  }
+};
+
 function buildSchoolHouseMarker(schoolHouse) {
   return new google.maps.Marker({
       "position": new google.maps.LatLng(schoolHouse.latitude, schoolHouse.longitude),
       "animation": google.maps.Animation.DROP,
+      "flat": true,
+      "icon": oorsh.maps.images.RedMarker,
       "title": (schoolHouse.township + ": " + schoolHouse.name)
   });
-  //google.maps.event.addListener(marker, 'click', toggleBounce);
+}
+
+function bindSchoolHouseClick(schoolHouse, map) {
+  google.maps.event.addListener(schoolHouse.marker, 'click', function (ev) {
+    var $details = $("#details").show();
+    $details.find("h2").text(schoolHouse.township + ": " + schoolHouse.name);
+    $("#map_canvas").width($(window).width() - $details.width());
+    google.maps.event.trigger(map, 'resize');
+    map.setCenter(ev.latLng);
+    schoolHouse.marker.setIcon(oorsh.maps.images.BlueMarker);
+    if (oorsh.maps.selectedSchoolHouse) {
+      oorsh.maps.selectedSchoolHouse.marker.setIcon(oorsh.maps.images.RedMarker);
+    }
+    oorsh.maps.selectedSchoolHouse = schoolHouse;
+  });
 }
 
 function setupLocations(map) {
@@ -13,6 +36,7 @@ function setupLocations(map) {
         marker = buildSchoolHouseMarker(schoolHouse);
     marker.setMap(map);
     schoolHouse.marker = marker;
+    bindSchoolHouseClick(schoolHouse, map);
   }
 }
 
@@ -44,6 +68,8 @@ function initializeMap() {
     mapTypeId: google.maps.MapTypeId.ROADMAP //TERRAIN, ROADMAP
   };
   var map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+  oorsh.maps.images.RedMarker = new google.maps.MarkerImage("http://maps.gstatic.com/mapfiles/ms/micons/red-dot.png");
+  oorsh.maps.images.BlueMarker = new google.maps.MarkerImage("http://maps.gstatic.com/mapfiles/ms/micons/blue-dot.png");
   setupLocations(map);
   setupTownshipFilter(map);
 }
