@@ -58,7 +58,7 @@ h6 {
 #details {
   width: 400px; height: 100%;
   float: left; position: relative;
-  border-right: 2px solid #ccc;
+  border-right: 1px solid #ccc;
   z-index: 3;
 }
 html.boxshadow #details {
